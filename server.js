@@ -15,6 +15,8 @@ app.use(express.static(path.join(__dirname, '/client/build')));
 
 app.use('/api', testimonials);
 app.use('/api', concerts);
+
+// Serve static files from the React app
 app.use('/api', seats);
 
 app.get('*', (req, res) => {
