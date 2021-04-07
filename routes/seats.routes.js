@@ -24,6 +24,7 @@ router.route('/seats').post((req, res) => {
     client: req.body.client,
     email: req.body.email,
   });
+  req.io.emit('seatsUpdated', (db.seats));
   res.json({ message: "Ok!" });
 });
 
