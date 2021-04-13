@@ -14,8 +14,11 @@ exports.getRandom = async (req, res) => {
     const rand = Math.floor(Math.random() * count);
     const sea = await Seat.findOne().skip(rand);
 
-    if (!sea) res.status(404).json({ message: 'Not found...' });
-    else res.json(sea);
+    if (!sea) {
+      res.status(404).json({ message: 'Not found...' });
+    } else {
+      res.json(sea);
+    }
   } catch (err) {
     res.json({ message: err });
   }
@@ -25,8 +28,11 @@ exports.getById = async (req, res) => {
   try {
     const sea = await Seat.findById(req.params.id);
 
-    if (!sea) res.status(404).json({ message: 'Not found...' });
-    else res.json(sea);
+    if (!sea) {
+      res.status(404).json({ message: 'Not found...' });
+    } else {
+      res.json(sea);
+    }
   } catch (err) {
     res.status(500).json({ message: err });
   }

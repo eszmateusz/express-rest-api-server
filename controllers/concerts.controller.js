@@ -14,8 +14,11 @@ exports.getRandom = async (req, res) => {
     const rand = Math.floor(Math.random() * count);
     const con = await Concert.findOne().skip(rand);
 
-    if (!con) res.status(404).json({ message: 'Not found...' });
-    else res.json(con);
+    if (!con) {
+      res.status(404).json({ message: 'Not found...' });
+    } else {
+      res.json(con);
+    }
   } catch (err) {
     res.json({ message: err });
   }
@@ -25,8 +28,11 @@ exports.getById = async (req, res) => {
   try {
     const con = await Concert.findById(req.params.id);
 
-    if (!con) res.status(404).json({ message: 'Not found...' });
-    else res.json(con);
+    if (!con) {
+      res.status(404).json({ message: 'Not found...' });
+    } else {
+      res.json(con);
+    }
   } catch (err) {
     res.status(500).json({ message: err });
   }

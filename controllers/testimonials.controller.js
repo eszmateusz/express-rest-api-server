@@ -14,8 +14,11 @@ exports.getRandom = async (req, res) => {
     const rand = Math.floor(Math.random() * count);
     const tes = await Testimonial.findOne().skip(rand);
 
-    if (!tes) res.status(404).json({ message: 'Not found...' });
-    else res.json(tes);
+    if (!tes) {
+      res.status(404).json({ message: 'Not found...' });
+    } else {
+      res.json(tes);
+    }
   } catch (err) {
     res.json({ message: err });
   }
@@ -25,8 +28,11 @@ exports.getById = async (req, res) => {
   try {
     const tes = await Testimonial.findById(req.params.id);
 
-    if (!tes) res.status(404).json({ message: 'Not found...' });
-    else res.json(tes);
+    if (!tes) {
+      res.status(404).json({ message: 'Not found...' });
+    } else {
+      res.json(tes);
+    }
   } catch (err) {
     res.status(500).json({ message: err });
   }
