@@ -48,10 +48,10 @@ const server = app.listen(process.env.PORT || 8000, () => {
   console.log('Server is running on port: 8000');
 });
 
-module.exports = server;
-
 const io = socket(server);
 
-io.on('connection', (socket) => {
-  console.log('New socket!');
+io.on('connection', socket => {
+  console.log(`New socket - ${socket.id}!`);
 });
+
+module.exports = server;
