@@ -35,7 +35,8 @@ app.use((req, res) => {
   res.status(404).json({ message: 'Err 404 - Not found...'});
 });
 
-mongoose.connect('mongodb+srv://mateu-sz:wertyq343@cluster0.g4yjo.mongodb.net/NewWaveDB?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
+const uriDB = process.env.NODE_ENV === 'production' ? `mongodb+srv://${process.env.REMOTE_DB_USERNAME}:${process.env.REMOTE_DB_PASS}@cluster0.g4yjo.mongodb.net/${process.env.REMOTE_DB_MAME}?retryWrites=true&w=majority` : 'mongodb://localhost:27017/NewWaveDB';
+mongoose.connect(uriDB, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 
 db.once('open', () => {
