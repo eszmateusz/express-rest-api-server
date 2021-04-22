@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const helmet = require('helmet');
 
 const testimonials = require('./routes/testimonials.routes');
 const concerts = require('./routes/concerts.routes');
@@ -11,6 +12,7 @@ const socket = require('socket.io');
 
 const app = express();
 
+app.use(helmet());
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
